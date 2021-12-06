@@ -13,3 +13,13 @@ extension Color {
     }
 }
 
+
+extension View {
+    func buttomStyle() -> some View {
+        self.modifier(ButtomStyle())
+    }
+    
+    func imageStyle() -> some View {
+        self.modifier(ImageStyle())
+    }
+}
