@@ -73,9 +73,10 @@ struct LoginView: View {
                 VStack {
                     Button(action: { correctLogin() }) {
                         Text("Sing Up")
-                            .buttomStyle()
+                            
                     }
-                    .padding(.top, 10)
+                    .buttonStyle(ButtonStyleSingUp())
+                    .padding(.top, 20)
                     .disabled(login.isEmpty || password.isEmpty)
                     .alert(isPresented: $invalidPassword, content: {
                             Alert(title: Text("Ошибка"), message: Text("Неверный логин/пароль"), dismissButton: .cancel())

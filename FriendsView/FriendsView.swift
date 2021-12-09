@@ -27,23 +27,32 @@ struct FriendsView: View {
         NavigationView {
             ScrollView {
                 ForEach(firends, id: \.id) { friend in
-                    VStack(alignment: .leading) {
-                        VStack( spacing: 10) {
-                            
-                            Image(friend.avatar)
-                                .resizable()
-                                .imageStyle()
-                                .padding(10)
-                            
-                            VStack( spacing: 5) {
+                    NavigationLink(destination: FriendsViewCollection()) {
+                        VStack(alignment: .leading) {
+                            HStack( spacing: 5) {
                                 
-                                Text(friend.name) + Text(" ") + Text(friend.secondName)
+                                Image(friend.avatar)
+                                    .resizable()
+                                    .avatarStyle()
+                                    .padding(5)
+                                Spacer()
                                 
-                                Button(action:{ } ) {
-                                    Text("Добавить")
-                                        .buttomStyle()
-                                        .frame(width: 20, height: 20)
-                                        .padding(30)
+                                VStack(alignment: .leading, spacing: 20) {
+                                    
+                                    HStack {
+                                        
+                                    Text(friend.name)
+                                        .foregroundColor(.black)
+                                    Text(friend.secondName)
+                                        .foregroundColor(.black)
+                                        Spacer()
+                                    }
+                                    
+                                    Button(action:{ } ) {
+                                        Text("Добавить")
+                                            .padding()
+                                    }
+                                    .buttonStyle(ButtonStyleAddFriends())
                                 }
                             }
                         }
@@ -51,7 +60,6 @@ struct FriendsView: View {
                 }
             }.navigationTitle(Text("Друзья"))
         }
-        
     }
 }
 
