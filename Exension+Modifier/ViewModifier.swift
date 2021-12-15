@@ -20,25 +20,25 @@ struct ButtomStyle: ViewModifier {
 }
 
 struct AvatarStyle: ViewModifier {
-
+    
     func body(content: Content) -> some View {
         content
             .aspectRatio(contentMode: .fill)
             .clipped()
             .clipShape(Circle())
             .frame(width: 100, height: 100)
-            
+        
     }
 }
 
 struct ButtonStyleSingUp: ButtonStyle {
-        
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(20)
-             .background(
+            .background(
                 Group {
-                       if configuration.isPressed {
+                    if configuration.isPressed {
                         RoundedRectangle(cornerRadius: 12.0)
                             .fill(Color.darkBlue)
                             .overlay(
@@ -55,28 +55,28 @@ struct ButtonStyleSingUp: ButtonStyle {
                                     .offset(x: -2, y: -2)
                                     .mask(RoundedRectangle(cornerRadius: 12.0).fill(LinearGradient(Color.clear, Color.black)))
                             )
-                       } else {
+                    } else {
                         RoundedRectangle(cornerRadius: 12.0)
-                               .fill(Color.lightBlue)
-                               .shadow(color: Color.black.opacity(0.2), radius: 3, x: 10, y: 10)
-                               .shadow(color: Color.midleBlue.opacity(0.7), radius: 3, x: -5, y: -5)
-                       }
-                   }
-             )
+                            .fill(Color.lightBlue)
+                            .shadow(color: Color.black.opacity(0.2), radius: 3, x: 10, y: 10)
+                            .shadow(color: Color.midleBlue.opacity(0.7), radius: 3, x: -5, y: -5)
+                    }
+                }
+            )
     }
 }
 
 
 struct ButtonStyleAddFriends: ButtonStyle {
-        
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .padding(10)
             .font(.footnote).foregroundColor(.secondary)
             .frame(width: 120, height: 30)
-             .background(
+            .background(
                 Group {
-                       if configuration.isPressed {
+                    if configuration.isPressed {
                         RoundedRectangle(cornerRadius: 8.0)
                             .fill(Color.darkBlue)
                             .overlay(
@@ -93,17 +93,23 @@ struct ButtonStyleAddFriends: ButtonStyle {
                                     .offset(x: -2, y: -2)
                                     .mask(RoundedRectangle(cornerRadius: 12.0).fill(LinearGradient(Color.clear, Color.black)))
                             )
-                       } else {
+                    } else {
                         RoundedRectangle(cornerRadius: 8.0)
-                               .fill(Color.lightBlue)
-                               .shadow(color: Color.black.opacity(0.2), radius: 1, x: 5, y: 5)
-                               .shadow(color: Color.white.opacity(0.7), radius: 1, x: -3, y: -3)
-                       }
-                   }
-             )
+                            .fill(Color.lightBlue)
+                            .shadow(color: Color.black.opacity(0.2), radius: 1, x: 5, y: 5)
+                            .shadow(color: Color.white.opacity(0.7), radius: 1, x: -3, y: -3)
+                    }
+                }
+            )
     }
 }
 
+struct PlainList: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .lineSpacing(50.0)
+    }
+}
 
 
 

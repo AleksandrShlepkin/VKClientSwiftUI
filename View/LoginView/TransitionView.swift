@@ -17,19 +17,12 @@ struct TransitionView: View {
             HStack {
                 LoginView(showNextView: $showFriendsCellView)
                 NavigationLink(
-                    destination: TableView(),
+                    destination: VKWebView(),
                     isActive: $showFriendsCellView,
                     label: {
                         EmptyView()
                     })
-            }
+            }.navigationBarHidden(true)
         }     
     }
-    
-    struct TransitionView_Previews: PreviewProvider {
-        static var previews: some View {
-            TransitionView()
-        }
-    }
-
 }
