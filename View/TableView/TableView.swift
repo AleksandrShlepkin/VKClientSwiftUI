@@ -12,10 +12,10 @@ struct TableView: View {
     
     var body: some View {
         TabView(selection: $countTab ) {
-            Text("Новости")
-                .tabItem { Image(systemName: "list.bullet").tag(1) }
             FriendsView(friends: FriendViewModel(FriendsAPI()))
-                .tabItem { Image(systemName: "person.2.fill").tag(2) }
+                .tabItem { Image(systemName: "person.2.fill").tag(1) }
+            Text("Новости")
+                .tabItem { Image(systemName: "list.bullet").tag(2) }
             Text("Группы")
                 .tabItem { Image(systemName: "person.3.fill").tag(3) }
             Text("Настройки")

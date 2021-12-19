@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct ButtomStyle: ViewModifier {
     
     func body(content: Content) -> some View {
@@ -16,7 +15,6 @@ struct ButtomStyle: ViewModifier {
             .frame(width: 130, height: 40)
             .background(Color.darkBlue).clipShape(Capsule())
     }
-    
 }
 
 struct AvatarStyle: ViewModifier {
@@ -27,7 +25,6 @@ struct AvatarStyle: ViewModifier {
             .clipped()
             .clipShape(Circle())
             .frame(width: 100, height: 100)
-        
     }
 }
 
@@ -104,12 +101,46 @@ struct ButtonStyleAddFriends: ButtonStyle {
     }
 }
 
-struct PlainList: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .lineSpacing(50.0)
-    }
-}
+struct TouchGestureViewModifier: ViewModifier {
+     let touchBegan: () -> Void
+     let touchEnd: (Bool) -> Void
 
+     @State private var hasBegun = false
+     @State private var hasEnded = false
 
+     private func isTooFar(_ translation: CGSize) -> Bool {
+         let distance = sqrt(pow(translation.width, 2) + pow(translation.height, 2))
+         return distance >= 20.0
+     }
+
+     func body(content: Content) -> some View {
+         content.gesture(DragGesture(minimumDistance: 0)
+                 .onChanged { event in
+                     guard !self.hasEnded else { return }
+
+                     if self.hasBegun == false {
+                         self.hasBegun = true
+                         self.touchBegan()
+                     } else if self.isTooFar(event.translation) {
+                         self.hasEnded = true
+                         self.touchEnd(false)
+                     }
+                 }
+                 .onEnded { event in
+                     if !self.hasEnded {
+                         let success = !self.isTooFar(event.translation)
+                         self.touchEnd(success)
+                     }
+                     self.hasBegun = false
+                     self.hasEnded = false
+                 })
+     }
+ }
+
+ extension View {
+     func onTouchGesture(touchBegan: @escaping () -> Void,
+                       touchEnd: @escaping (Bool) -> Void) -> some View {
+         modifier(TouchGestureViewModifier(touchBegan: touchBegan, touchEnd: touchEnd))
+     }
+ }
 

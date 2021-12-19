@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FriendsView: View {
     @ObservedObject var friends: FriendViewModel
+
     init(friends: FriendViewModel){
         self.friends = friends
     }
@@ -21,8 +22,9 @@ struct FriendsView: View {
                     FriendsViewCollection(friend: friend)
                 }
             }
+            .listStyle(PlainListStyle())
             .onAppear { friends.fetch() }
-            .padding(50)
+            .navigationTitle("Друзья")
     }
 }
 

@@ -40,14 +40,6 @@ struct LoginView: View {
                         Image("VKLog")
                             .padding(.top, 120)
                             .scaleEffect(scale)
-                            
-//                            MARK: Анимация стала странно себя вести, когда создал переход на следующий вью
-                            .onAppear {
-                                let baseAnimation = Animation.interpolatingSpring(mass: 0.3, stiffness: 2.0, damping: 0.5, initialVelocity: 1.0)
-                                return withAnimation(baseAnimation) {
-                                    self.scale = 1.1
-                                }
-                            }
                     } else {
                         Image("VKLog")
                             .resizable()

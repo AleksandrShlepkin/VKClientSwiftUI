@@ -12,7 +12,6 @@ protocol GetFriends {
     func getFriends(completion: @escaping (FriendsCodable) -> ())
 }
 
-
 struct FriendsAPI: GetFriends {
     let baseURL = "https://api.vk.com/method"
     let token = Session.shared.token
