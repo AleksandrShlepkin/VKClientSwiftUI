@@ -15,7 +15,7 @@ struct LoginView: View {
     @State private var scale: CGFloat = 1
     @State private var shoudShowLogo: Bool = true
     @State private var invalidPassword: Bool = false
-    @Binding var showNextView: Bool
+    @ObservedObject var viewModel: LoginViewModel
     
     
     
@@ -105,18 +105,13 @@ struct LoginView: View {
     
     func correctLogin() {
         if login == "test" && password == "test" {
-            self.showNextView = true
+            self.viewModel.userIsLogged = true
         } else {
             
             self.invalidPassword = true
         }
     }
     
-    struct LoginView_Previews: PreviewProvider {
-        static var previews: some View {
-            LoginView(showNextView: .constant(false))
-        }
-    }
 }
 
 extension UIApplication {

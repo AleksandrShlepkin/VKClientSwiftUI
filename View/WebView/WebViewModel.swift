@@ -11,10 +11,15 @@ import WebKit
 import Combine
 import SwiftUI
 
+class WebViewModel: ObservableObject {
+    @Published var logged = false
+}
+
 
 struct myWebView: UIViewRepresentable {
     
     @ObservedObject var session = Session.shared
+    @ObservedObject var logged: WebViewModel
     fileprivate let navigationDelegate = WebViewNavigationDelegate()
     
     

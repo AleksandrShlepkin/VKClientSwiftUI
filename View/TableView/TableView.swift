@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+class TableViewModel: ObservableObject {
+    @Published var transition = false
+}
 
 struct TableView: View {
     @State var countTab: Int = 4
+    
+    @ObservedObject var tableView: TableViewModel
     
     var body: some View {
         TabView(selection: $countTab ) {

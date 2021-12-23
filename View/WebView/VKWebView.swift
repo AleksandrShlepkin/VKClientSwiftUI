@@ -13,8 +13,8 @@ struct VKWebView: View {
     var body: some View {
         NavigationView {
             HStack {
-                myWebView(type: .public, url: "https://vk.com")
-                NavigationLink(destination: TableView(), isActive: $session.isAvtorisation) {
+                myWebView(logged: WebViewModel(), type: .public, url: "https://vk.com")
+                NavigationLink(destination: TableView( tableView: TableViewModel()), isActive: $session.isAvtorisation) {
                     EmptyView()
                 }
             }
